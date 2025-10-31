@@ -5,7 +5,7 @@ FROM nginx:alpine
 COPY . /usr/share/nginx/html
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 81
 
 # Default command
 CMD ["nginx", "-g", "daemon off;"]
