@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://github.com/prince-thakur07/static-website.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                docker build -t static-website:latest .
+                '''
+            }
+        }
+        stage('Push to ACR') {
+            steps {
+                withCredentials([string(credentialsId: 'azure-acr-pass', variable: 'ACR_PASS')]) {
+                    sh '''
+                    az acr login --name <yourRegistryName> -u <yourRegistryName> -p $ACR_PASS
+                    docker tag static-website:latest <yourRegistryName>.azurecr.io/static-website:v1
+                    docker push <yourRegistryName>.azurecr.io/static-website:v1
+                    '''
+                }
+            }
+        }
+        stage('Deploy to Azure') {
+            steps {
+                sh '''
+                az webapp config container set \
+                --name staticwebapp-demo \
+                --resource-group <your_rg> \
+                --docker-custom-image-name <yourRegistryName>.azurecr.io/static-website:v1 \
+                --docker-registry-server-url https://<yourRegistryName>.azurecr.io
+                '''
+            }
+        }
+    }
+}
