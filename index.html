@@ -1,587 +1,933 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Professional business website with modern UI design">
-  <title>Modern Business - Empowering Your Growth</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    /* Global Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      color: #1f2937;
-      background-color: #f9fafc;
-      overflow-x: hidden;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 20px;
-    }
-
-    /* ================================
-       Navbar
-       ================================ */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-      z-index: 1000;
-    }
-
-    .nav-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 0;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-      color: #3b82f6;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .logo i {
-      color: #6366f1;
-      font-size: 28px;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 35px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #374151;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: linear-gradient(90deg, #6366f1, #3b82f6);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: #3b82f6;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* ================================
-       Hero Section
-       ================================ */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      position: relative;
-      padding-top: 80px;
-    }
-
-    .hero-content {
-      max-width: 800px;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-size: 54px;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-
-    .hero p {
-      font-size: 20px;
-      margin-bottom: 35px;
-      opacity: 0.95;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 36px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #6366f1, #3b82f6);
-      color: white;
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
-    }
-
-    /* ================================
-       Section Titles
-       ================================ */
-    .section-header {
-      text-align: center;
-      margin-bottom: 70px;
-    }
-
-    .section-title {
-      font-size: 40px;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 10px;
-    }
-
-    .section-description {
-      color: #6b7280;
-      font-size: 18px;
-    }
-
-    /* ================================
-       Services
-       ================================ */
-    .services {
-      padding: 100px 0;
-      background: #f1f5f9;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-    }
-
-    .service-card {
-      background: white;
-      border-radius: 15px;
-      padding: 40px 30px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
-    }
-
-    .service-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 15px;
-      background: linear-gradient(135deg, #3b82f6, #6366f1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 25px;
-      color: white;
-      font-size: 30px;
-    }
-
-    .service-title {
-      font-size: 24px;
-      font-weight: 600;
-      color: #1e293b;
-      margin-bottom: 15px;
-    }
-
-    .service-description {
-      color: #6b7280;
-      margin-bottom: 20px;
-      line-height: 1.7;
-    }
-
-    .service-link {
-      color: #3b82f6;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .service-link:hover {
-      letter-spacing: 1px;
-    }
-
-    /* ================================
-       About Section
-       ================================ */
-    .about {
-      padding: 100px 0;
-      background: white;
-    }
-
-    .about-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .about-img {
-      background: linear-gradient(135deg, #6366f1, #3b82f6);
-      height: 450px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.3);
-      font-size: 100px;
-    }
-
-    .about h2 {
-      font-size: 40px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: #1e293b;
-    }
-
-    .about p {
-      color: #6b7280;
-      margin-bottom: 20px;
-      line-height: 1.8;
-    }
-
-    /* ================================
-       Contact
-       ================================ */
-    .contact {
-      background: #f1f5f9;
-      padding: 100px 0;
-    }
-
-    .contact-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .contact-info {
-      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-      color: white;
-      border-radius: 20px;
-      padding: 50px 40px;
-    }
-
-    .contact-info h3 {
-      margin-bottom: 15px;
-      font-size: 26px;
-    }
-
-    .contact-item {
-      margin-top: 25px;
-      display: flex;
-      gap: 15px;
-      align-items: flex-start;
-    }
-
-    .contact-item i {
-      font-size: 24px;
-      color: #93c5fd;
-    }
-
-    .contact-item h4 {
-      margin-bottom: 5px;
-      font-size: 18px;
-    }
-
-    .contact-form {
-      background: white;
-      border-radius: 20px;
-      padding: 50px 40px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    }
-
-    .form-group {
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      font-weight: 500;
-      margin-bottom: 8px;
-      color: #1f2937;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: 10px;
-      border: 2px solid #e5e7eb;
-      font-family: 'Inter';
-      transition: 0.3s;
-    }
-
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: #6366f1;
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    /* ================================
-       Footer
-       ================================ */
-    .footer {
-      background: #111827;
-      color: #d1d5db;
-      padding: 70px 0 40px;
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 50px;
-    }
-
-    .footer-logo {
-      font-size: 24px;
-      font-weight: 700;
-      color: #3b82f6;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links a {
-      color: #d1d5db;
-      text-decoration: none;
-      transition: 0.3s;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .footer-links a:hover {
-      color: #3b82f6;
-      padding-left: 5px;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 15px;
-    }
-
-    .social-links a {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      color: white;
-      transition: 0.3s;
-    }
-
-    .social-links a:hover {
-      background: linear-gradient(135deg, #3b82f6, #6366f1);
-      transform: translateY(-3px);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 25px;
-      font-size: 14px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .about-wrapper, .contact-wrapper, .footer-content {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
-        font-size: 40px;
-      }
-
-      .section-title {
-        font-size: 32px;
-      }
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional business website with modern design">
+    <title>Modern Business - Your Success Partner</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===================================
+           CSS Reset & Base Styles
+           =================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ===================================
+           Utility Classes
+           =================================== */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        /* ===================================
+           Navigation Bar
+           =================================== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===================================
+           Hero Section
+           =================================== */
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* ===================================
+           Services Section
+           =================================== */
+
+        .services {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-icon i {
+            font-size: 32px;
+            color: #fff;
+        }
+
+        .service-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .service-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 12px;
+        }
+
+        /* ===================================
+           About Section
+           =================================== */
+
+        .about {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .image-placeholder i {
+            font-size: 120px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .about-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 25px;
+        }
+
+        .about-text {
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .stat-item:hover .stat-number {
+            color: #fff;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .stat-item:hover .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* ===================================
+           Contact Section
+           =================================== */
+
+        .contact {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px 40px;
+            border-radius: 20px;
+            color: #fff;
+        }
+
+        .contact-info-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .contact-info-text {
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            margin-top: 5px;
+        }
+
+        .contact-item h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #2d3748;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* ===================================
+           Footer
+           =================================== */
+
+        .footer {
+            background: #1a202c;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo i {
+            font-size: 28px;
+        }
+
+        .footer-description {
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #667eea;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* ===================================
+           Responsive Design
+           =================================== */
+
+        /* Tablets */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 25px;
+            }
+            
+            .hero-title {
+                font-size: 40px;
+            }
+            
+            .hero-description {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-placeholder {
+                height: 400px;
+            }
+            
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            
+            .stat-number {
+                font-size: 28px;
+            }
+            
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 480px) {
+            .nav-wrapper {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .hero {
+                min-height: 100vh;
+                padding-top: 120px;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-description {
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .section-description {
+                font-size: 16px;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form,
+            .contact-info {
+                padding: 30px 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container">
-      <div class="nav-wrapper">
-        <div class="logo">
-          <i class="fas fa-rocket"></i> ModernBiz
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>ModernBiz</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="container hero-content">
-      <h1>Empowering Digital Transformation</h1>
-      <p>We help businesses innovate, scale, and succeed with technology-driven solutions and modern design.</p>
-      <a href="#contact" class="btn btn-primary">Get Started</a>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="services">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Our Expertise</h2>
-        <p class="section-description">Building innovative, reliable, and future-ready solutions.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-          <h3 class="service-title">Web Development</h3>
-          <p class="service-description">High-performance websites and web apps crafted for user engagement and growth.</p>
-          <a href="#contact" class="service-link">Learn More →</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Transform Your Business Vision Into Reality</h1>
+                <p class="hero-description">We deliver cutting-edge solutions that drive growth, innovation, and success for businesses of all sizes.</p>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
         </div>
+    </section>
 
-        <div class="service-card">
-          <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
-          <h3 class="service-title">App Solutions</h3>
-          <p class="service-description">Native & cross-platform apps ensuring seamless experiences for users.</p>
-          <a href="#contact" class="service-link">Learn More →</a>
-        </div>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-description">Comprehensive solutions tailored to your business needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">Custom websites and web applications built with the latest technologies to ensure performance, scalability, and user engagement.</p>
+                    <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
 
-        <div class="service-card">
-          <div class="service-icon"><i class="fas fa-chart-line"></i></div>
-          <h3 class="service-title">Digital Marketing</h3>
-          <p class="service-description">Grow your brand visibility and conversions with targeted digital strategies.</p>
-          <a href="#contact" class="service-link">Learn More →</a>
-        </div>
-      </div>
-    </div>
-  </section>
+                <!-- Service Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Mobile Solutions</h3>
+                    <p class="service-description">Native and cross-platform mobile applications designed to deliver seamless experiences across all devices.</p>
+                    <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
 
-  <!-- About -->
-  <section id="about" class="about">
-    <div class="container">
-      <div class="about-wrapper">
-        <div class="about-img"><i class="fas fa-users"></i></div>
-        <div>
-          <h2>Who We Are</h2>
-          <p>We’re a team of passionate innovators and strategists helping organizations thrive in a digital-first world. Our mission is to turn business ideas into reality through cutting-edge technology and creative vision.</p>
-          <p>Partner with us to experience the perfect blend of technology, creativity, and business growth.</p>
+                <!-- Service Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Digital Marketing</h3>
+                    <p class="service-description">Strategic marketing campaigns that boost your online presence and drive measurable results for your business.</p>
+                    <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Let’s Connect</h2>
-        <p class="section-description">We’d love to hear from you. Let’s build something amazing together.</p>
-      </div>
-      <div class="contact-wrapper">
-        <div class="contact-info">
-          <h3>Contact Information</h3>
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <div><h4>Email</h4><p>hello@modernbiz.com</p></div>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <div><h4>Phone</h4><p>+1 (555) 123-4567</p></div>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <div><h4>Address</h4><p>123 Business Ave, New York, USA</p></div>
-          </div>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <h2 class="about-title">About Us</h2>
+                    <p class="about-text">
+                        With over a decade of experience in the digital landscape, we are a team of passionate professionals dedicated to helping businesses thrive in the modern world. Our mission is to deliver innovative solutions that not only meet but exceed our clients' expectations.
+                    </p>
+                    <p class="about-text">
+                        We believe in building long-term partnerships based on trust, transparency, and measurable results. Our client-centric approach ensures that every project is tailored to your unique needs and goals.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h3 class="stat-number">500+</h3>
+                            <p class="stat-label">Projects Completed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="stat-number">200+</h3>
+                            <p class="stat-label">Happy Clients</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="stat-number">10+</h3>
+                            <p class="stat-label">Years Experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form class="contact-form">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" placeholder="John Doe" required>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="john@example.com" required>
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea placeholder="Tell us about your project..." required></textarea>
-          </div>
-          <button class="btn btn-primary">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div>
-          <div class="footer-logo"><i class="fas fa-rocket"></i> ModernBiz</div>
-          <p>Driving business success through design, technology, and strategy.</p>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-description">Let's discuss how we can help your business grow</p>
+            </div>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3 class="contact-info-title">Contact Information</h3>
+                    <p class="contact-info-text">Feel free to reach out to us through any of the following channels. We're here to help!</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@modernbiz.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>123 Business Street, Suite 100<br>New York, NY 10001</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
         </div>
-        <div>
-          <h4 class="footer-title">Quick Links</h4>
-          <ul class="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-rocket"></i>
+                        <span>ModernBiz</span>
+                    </div>
+                    <p class="footer-description">Empowering businesses through innovative digital solutions.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ModernBiz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
